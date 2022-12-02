@@ -17,7 +17,10 @@ const AnimatedRoutes = () => {
 			<Routes location={location} key={location.pathname}>
 				<Route index path="/" element={<Login setUser={setUser} />} />
 				<Route path="/register" element={<Register />} />
-				<Route path="/dashboard" element={<Dashboard user={user} />} />
+				<Route
+					path="/dashboard"
+					element={<Dashboard user={user} setUser={setUser} />}
+				/>
 			</Routes>
 		</AnimatePresence>
 	);

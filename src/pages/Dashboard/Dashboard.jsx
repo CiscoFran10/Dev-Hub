@@ -6,13 +6,15 @@ import Header from "./Header/Header";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user, setUser }) => {
 	const navigate = useNavigate();
+
 	const handleLogout = () => {
 		localStorage.removeItem("@TOKEN");
 		localStorage.removeItem("@USERID");
 
-		navigate("/")
+		setUser("");
+		navigate("/");
 	};
 
 	return (
