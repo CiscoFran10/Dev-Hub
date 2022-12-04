@@ -51,7 +51,7 @@ const StyledButton = styled.button`
 
 	&.delete {
 		padding: 10px 15px;
-		background: url("/src/assets/delete.svg") no-repeat center;
+		background: url("/delete.svg") no-repeat center;
 		background-size: contain;
 		background-position: center;
 
