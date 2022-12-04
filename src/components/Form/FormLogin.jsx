@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext , useState} from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -9,11 +9,12 @@ import Button from "../Button/Button";
 import { Input } from "../Input/input";
 
 import StyledForm from "./StyledForm";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { UserContext } from "../../Provider/Context/UserContext";
 
-const FormLogin = ({ setUser }) => {
+const FormLogin = () => {
+	const { setUser } = useContext(UserContext);
+
 	const {
 		register,
 		handleSubmit,

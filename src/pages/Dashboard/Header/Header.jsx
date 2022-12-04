@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../../Provider/Context/UserContext";
 import StyledHeader from "./StyledHeader";
 
-const Header = ({ user }) => {
+const Header = () => {
+	const { user } = useContext(UserContext);
 	return (
 		<StyledHeader>
 			<div className="container">

@@ -6,21 +6,16 @@ import { ToastContainer } from "react-toastify";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import { useState } from "react";
 
 const AnimatedRoutes = () => {
 	const location = useLocation();
-	const [user, setUser] = useState("");
 
 	return (
 		<AnimatePresence mode="wait">
 			<Routes location={location} key={location.pathname}>
-				<Route index path="/" element={<Login setUser={setUser} />} />
+				<Route index path="/" element={<Login />} />
 				<Route path="/register" element={<Register />} />
-				<Route
-					path="/dashboard"
-					element={<Dashboard user={user} setUser={setUser} />}
-				/>
+				<Route path="/dashboard" element={<Dashboard />} />
 			</Routes>
 		</AnimatePresence>
 	);

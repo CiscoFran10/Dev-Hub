@@ -49,6 +49,23 @@ const StyledButton = styled.button`
 		animation: spin 0.4s linear infinite;
 	}
 
+	&.delete {
+		padding: 10px 15px;
+		background: url("/src/assets/delete.svg") no-repeat center;
+		background-size: contain;
+		background-position: center;
+
+		&:hover {
+			background-color: var(--grey-2);
+		}
+	}
+
+	&.close {
+		padding: 0 0 0 20px;
+		background: none;
+		color: var(--grey-1);
+	}
+
 	@keyframes spin {
 		to {
 			rotate: 1turn;

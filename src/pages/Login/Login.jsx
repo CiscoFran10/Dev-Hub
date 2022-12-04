@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import FormLogin from "../../components/Form/FormLogin";
 
-const Login = ({ setUser }) => {
+const Login = () => {
 	return (
 		<motion.div
 			initial={{ x: "-100%" }}
@@ -18,7 +18,7 @@ const Login = ({ setUser }) => {
 
 				<div className="form-container">
 					<h2>Login</h2>
-					<FormLogin setUser={setUser} />
+					<FormLogin />
 
 					<p>Ainda não possui uma conta?</p>
 					<Link to="/register">Cadastre-se</Link>
