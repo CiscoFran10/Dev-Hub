@@ -1,21 +1,27 @@
 import { createContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import api from "../../services/api";
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-	const [user, setUser] = useState("");
-	const token = JSON.parse(localStorage.getItem("@TOKEN"));
+	const [user, setUser] = useState(
+		() => JSON.parse(localStorage.getItem("@TOKEN")) || ""
+	);
 
 	const getUser = async () => {
 		try {
-			const res = await api.get("profile", {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			});
+			const token = JSON.parse(localStorage.getItem("@TOKEN"));
 
-			setUser(res.data);
+			if (token) {
+				const res = await api.get("profile", {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+
+				setUser(res.data);
+			}
 		} catch (error) {
 			console.log(error);
 			localStorage.clear();
@@ -23,13 +29,17 @@ const UserProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		if (token) {
-			getUser();
-		}
+		getUser();
 	}, []);
 
+	const handleLogout = () => {
+		localStorage.clear();
+
+		setUser("");
+	};
+
 	return (
-		<UserContext.Provider value={{ user, setUser, getUser }}>
+		<UserContext.Provider value={{ user, setUser, getUser, handleLogout }}>
 			{children}
 		</UserContext.Provider>
 	);

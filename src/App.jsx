@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import ProtectedRoute from "./pages/ProtectedRoute/ProtectedRoute";
 
 const AnimatedRoutes = () => {
 	const location = useLocation();
@@ -15,7 +16,9 @@ const AnimatedRoutes = () => {
 			<Routes location={location} key={location.pathname}>
 				<Route index path="/" element={<Login />} />
 				<Route path="/register" element={<Register />} />
-				<Route path="/dashboard" element={<Dashboard />} />
+				<Route element={<ProtectedRoute />}>
+					<Route path="/dashboard" element={<Dashboard />} />
+				</Route>
 			</Routes>
 		</AnimatePresence>
 	);

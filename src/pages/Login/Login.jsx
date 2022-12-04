@@ -1,9 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import StyledLogin from "./StyledLogin";
 import { motion } from "framer-motion";
 
 import FormLogin from "../../components/Form/FormLogin";
+import { useContext } from "react";
+import { UserContext } from "../../Provider/Context/UserContext";
+import { useEffect } from "react";
 
 const Login = () => {
 	return (

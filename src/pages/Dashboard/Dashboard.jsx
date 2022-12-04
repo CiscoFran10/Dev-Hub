@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Provider/Context/UserContext";
 
 import StyledDashboard from "./StyledDashboard";
@@ -9,19 +8,12 @@ import Button from "../../components/Button/Button";
 import { ModalContext } from "../../Provider/Context/ModalContext";
 import Modal from "../../components/Modal/Modal";
 import { TechContext } from "../../Provider/Context/TechContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-	const navigate = useNavigate();
-	const { user, setUser } = useContext(UserContext);
+	const { user, handleLogout } = useContext(UserContext);
 	const { deleteTech } = useContext(TechContext);
 	const { setActive } = useContext(ModalContext);
-
-	const handleLogout = () => {
-		localStorage.clear();
-
-		setUser("");
-		navigate("/");
-	};
 
 	return (
 		<motion.div
