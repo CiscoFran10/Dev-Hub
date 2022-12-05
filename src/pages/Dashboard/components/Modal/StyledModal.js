@@ -6,12 +6,14 @@ const StyledModal = styled.div`
 	left: 0;
 	height: 100vh;
 	width: 100vw;
+	z-index: 80;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background: rgba(18, 18, 20, 0.5);
 
 	.modal {
+		z-index: 100;
 		width: 370px;
 		border-radius: 4px;
 		overflow: hidden;
@@ -35,8 +37,26 @@ const StyledModal = styled.div`
 		}
 	}
 
+	.modal-buttons {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: 22px;
+
+		button {
+			flex-grow: 1;
+		}
+	}
+
 	.modal form {
 		padding: 22px;
+	}
+
+	@media (max-width: 400px) {
+		.modal {
+			width: 100%;
+			margin: 0 20px;
+		}
 	}
 `;
 

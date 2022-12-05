@@ -3,19 +3,21 @@ import { motion } from "framer-motion";
 import { UserContext } from "../../Provider/Context/UserContext";
 
 import StyledDashboard from "./StyledDashboard";
-import Header from "./Header/Header";
+import Header from "./components/Header/Header";
 import Button from "../../components/Button/Button";
 import { ModalContext } from "../../Provider/Context/ModalContext";
-import Modal from "../../components/Modal/Modal";
-import { TechContext } from "../../Provider/Context/TechContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import ModalAdd from "./components/Modal/ModalAdd";
+import ModalUpdate from "./components/Modal/ModalUpdate";
+import CardTech from "./components/CardTech/CardTech";
 
 const Dashboard = () => {
 	const { user, handleLogout } = useContext(UserContext);
-	const { deleteTech } = useContext(TechContext);
-	const { setActive } = useContext(ModalContext);
+	const { setActive, setType } = useContext(ModalContext);
 
-	console.log(user);
+	const handleClick = () => {
+		setActive(true);
+		setType("add");
+	};
 
 	return (
 		<motion.div
@@ -40,7 +42,7 @@ const Dashboard = () => {
 				<main className="container">
 					<div className="list-header">
 						<h2>Tecnologias</h2>
-						<Button callback={() => setActive(true)} className="dark">
+						<Button callback={handleClick} className="dark">
 							+
 						</Button>
 					</div>
@@ -56,18 +58,15 @@ const Dashboard = () => {
 					>
 						{user.techs?.length > 0 ? (
 							user.techs.map(({ title, status, id }) => (
-								<li key={id}>
-									<h3>{title}</h3>
-									<span>{status}</span>
-									<Button callback={() => deleteTech(id)} className="delete" />
-								</li>
+								<CardTech key={id} title={title} status={status} id={id} />
 							))
 						) : (
 							<p>Nenhuma tecnologia registrada</p>
 						)}
 					</motion.ul>
 				</main>
-				<Modal />
+				<ModalAdd />
+				<ModalUpdate />
 			</StyledDashboard>
 		</motion.div>
 	);

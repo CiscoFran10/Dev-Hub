@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import StyledInput from "./StyledInput";
 
 export const Input = React.forwardRef(
-	({ label, errors, name, children, ...props }, ref) => {
+	({ label, errors, name, children, type, ...props }, ref) => {
 		return (
 			<StyledInput
 				initial={{ opacity: 0, y: 100 }}

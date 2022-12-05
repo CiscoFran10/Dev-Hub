@@ -1,19 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import api from "../../services/api";
-import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
+import { ModalContext } from "../../../../Provider/Context/ModalContext";
+import { TechContext } from "../../../../Provider/Context/TechContext";
 
-import { Input, Select } from "../Input/input";
-import { ModalContext } from "../../Provider/Context/ModalContext";
-import Button from "../Button/Button";
+import { Input, Select } from "../../../../components/Input/input";
+import Button from "../../../../components/Button/Button";
 import StyledModal from "./StyledModal";
-import StyledForm from "../Form/StyledForm";
-import { TechContext } from "../../Provider/Context/TechContext";
+import StyledForm from "../../../../components/Form/StyledForm";
 
-const Modal = () => {
+const ModalAdd = () => {
+	const { active, setActive, type } = useContext(ModalContext);
+	const { addTech, loading } = useContext(TechContext);
 	const {
 		register,
 		reset,
@@ -22,8 +22,6 @@ const Modal = () => {
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
-	const { active, setActive } = useContext(ModalContext);
-	const { addTech, loading } = useContext(TechContext);
 
 	useEffect(() => {
 		reset();
@@ -31,14 +29,22 @@ const Modal = () => {
 
 	return (
 		<AnimatePresence>
-			{active && (
-				<StyledModal className="modal-container">
+			{active && type === "add" && (
+				<StyledModal
+					className="modal-container"
+					onClick={() => setActive(false)}
+				>
 					<motion.div
+						onClick={(e) => e.stopPropagation()}
 						key={active}
 						initial={{ opacity: 0, y: -100 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: 100 }}
-						transition={{ duration: 0.4, type: "spring", ease: "easeOut" }}
+						transition={{
+							duration: 0.4,
+							type: "spring",
+							ease: "easeOut",
+						}}
 						className="modal"
 					>
 						<div className="modal-header">
@@ -80,7 +86,7 @@ const Modal = () => {
 	);
 };
 
-export default Modal;
+export default ModalAdd;
 
 const schema = yup.object().shape({
 	title: yup.string().required("Tecnologia é obrigatorio"),

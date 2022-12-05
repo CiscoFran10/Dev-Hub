@@ -12,6 +12,7 @@ const TechProvider = ({ children }) => {
 	const { getUser } = useContext(UserContext);
 	const [loading, setLoading] = useState(false);
 	const token = JSON.parse(localStorage.getItem("@TOKEN"));
+	const [selected, setSelected] = useState("");
 
 	const addTech = async (data) => {
 		try {
@@ -25,20 +26,42 @@ const TechProvider = ({ children }) => {
 			if (res) {
 				toast.success("Tecnologia adicionada");
 				getUser();
+				setActive(false);
 			}
 		} catch (error) {
 			console.log(error);
 			toast.error("Ops, algo deu errado");
 		} finally {
 			setLoading(false);
-			setActive(false);
 		}
 	};
 
-	const deleteTech = async (id) => {
+	const updateTech = async (data) => {
 		try {
 			setLoading(true);
-			const res = await api.delete(`users/techs/${id}`, {
+			const res = await api.put(`users/techs/${selected.id}`, data, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			if (res) {
+				toast.success("Tecnologia atualizada");
+				getUser();
+				setActive(false);
+			}
+		} catch (error) {
+			console.log(error);
+			toast.error("Ops, algo deu errado");
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const deleteTech = async (event) => {
+		event.preventDefault();
+		try {
+			const res = await api.delete(`users/techs/${selected.id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -46,16 +69,24 @@ const TechProvider = ({ children }) => {
 
 			toast.success("Tecnologia removida");
 			getUser();
+			setActive(false);
 		} catch (error) {
 			console.log(error);
 			toast.error("Ops, algo deu errado");
-		} finally {
-			setLoading(false);
 		}
 	};
 
 	return (
-		<TechContext.Provider value={{ loading, addTech, deleteTech }}>
+		<TechContext.Provider
+			value={{
+				loading,
+				addTech,
+				deleteTech,
+				updateTech,
+				selected,
+				setSelected,
+			}}
+		>
 			{children}
 		</TechContext.Provider>
 	);
