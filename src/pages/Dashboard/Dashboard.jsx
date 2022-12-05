@@ -15,6 +15,8 @@ const Dashboard = () => {
 	const { deleteTech } = useContext(TechContext);
 	const { setActive } = useContext(ModalContext);
 
+	console.log(user);
+
 	return (
 		<motion.div
 			initial={{ x: "-100%" }}
@@ -52,7 +54,7 @@ const Dashboard = () => {
 							type: "spring",
 						}}
 					>
-						{user.techs ? (
+						{user.techs?.length > 0 ? (
 							user.techs.map(({ title, status, id }) => (
 								<li key={id}>
 									<h3>{title}</h3>

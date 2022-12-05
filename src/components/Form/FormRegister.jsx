@@ -61,6 +61,7 @@ const FormRegister = () => {
 				{...register("course_module")}
 				name="course_module"
 				label="Selecionar módulo"
+				errors={errors}
 				options={selectOptions}
 			/>
 
