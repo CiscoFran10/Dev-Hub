@@ -1,4 +1,4 @@
-import React, { useContext , useState} from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -79,18 +79,3 @@ const schema = yup.object().shape({
 	email: yup.string().required("Email é obrigatório"),
 	password: yup.string().required("Senha é obrigatório"),
 });
-
-const inputs = [
-	{
-		label: "Email",
-		name: "email",
-		placeholder: "Digite aqui seu email",
-		type: "email",
-	},
-	{
-		label: "Senha",
-		name: "password",
-		placeholder: "Digite aqui sua senha",
-		type: "password",
-	},
-];

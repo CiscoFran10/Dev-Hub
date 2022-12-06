@@ -16,7 +16,7 @@ export const Input = React.forwardRef(
 						name={name}
 						style={errors[name] && { borderColor: "var(--primary)" }}
 						ref={ref}
-						type="text"
+						type={type}
 						{...props}
 					/>
 
