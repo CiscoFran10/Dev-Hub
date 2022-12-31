@@ -1,12 +1,9 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StyledLogin from "./StyledLogin";
 import { motion } from "framer-motion";
 
 import FormLogin from "../../components/Form/FormLogin";
-import { useContext } from "react";
-import { UserContext } from "../../Provider/Context/UserContext";
-import { useEffect } from "react";
 
 const Login = () => {
 	return (
@@ -17,7 +14,7 @@ const Login = () => {
 			exit={{ x: "100%" }}
 		>
 			<StyledLogin className="container">
-				<h1>Kenzie Hub</h1>
+				<h1>Dev Hub</h1>
 
 				<div className="form-container">
 					<h2>Login</h2>

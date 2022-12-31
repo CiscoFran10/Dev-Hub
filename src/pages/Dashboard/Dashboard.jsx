@@ -30,7 +30,7 @@ const Dashboard = () => {
 				<header>
 					<div className="container">
 						<nav>
-							<h1>Kenzie hub</h1>
+							<h1>Dev hub</h1>
 							<Button callback={handleLogout} className="dark">
 								Sair
 							</Button>

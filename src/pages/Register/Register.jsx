@@ -15,7 +15,7 @@ const Register = () => {
 		>
 			<StyledRegister>
 				<div className="header">
-					<h1>Kenzie Hub</h1>
+					<h1>Dev Hub</h1>
 					<Link to="/">Voltar</Link>
 				</div>
 
